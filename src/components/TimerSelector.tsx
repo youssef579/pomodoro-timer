@@ -1,9 +1,11 @@
-import { useSettings } from "hooks/useStore";
+// State management
+import { useSettings } from "hooks/useSettings";
 import { useShallow } from "zustand/react/shallow";
+// Utils
+import { timers } from "utils/settings";
 import { cn } from "utils/cn";
 
 export default function TimerSelector() {
-    const timers = ["pomodoro", "short break", "long break"] as const;
     const { currentTimer, color, setTimer } = useSettings(
         useShallow((state) => ({
             currentTimer: state.currentTimer,
@@ -26,7 +28,7 @@ export default function TimerSelector() {
                     key={timer}
                     onClick={() => setTimer({ currentTimer: timer })}
                     className={cn(
-                        "relative px-8 py-3.5 text-sm font-semibold transition-all max-sm:px-4",
+                        "relative px-[clamp(0.25rem,2vw,2rem)] py-3.5 text-sm font-bold transition-all",
                         currentTimer !== timer
                             ? "opacity-50 hover:opacity-100"
                             : "text-dark-blue-2",

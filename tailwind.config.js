@@ -12,6 +12,18 @@ export default {
             transitionDuration: {
                 DEFAULT: "300ms",
             },
+            keyframes: {
+                "fade-in": {
+                    from: { opacity: 0 },
+                    to: { opacity: 1 },
+                },
+            },
+            animation: {
+                "fade-in": "fade-in 300ms",
+            },
+            screens: {
+                sm: "550px",
+            }
         },
     },
     plugins: [],

@@ -1,11 +1,14 @@
+// Zustand
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+// Utils
+import type { Timer, Font, Color } from "utils/settings";
 
 type Settings = {
-    color: "#f87070";
-    font: "Kumbh Sans Vairable" | "Roboto Slab" | "Space Mono";
-    currentTimer: "pomodoro" | "short break" | "long break";
-};
+    color: Color;
+    font: Font;
+    currentTimer: Timer;
+} & Record<Timer, number>;
 
 type Handlers = {
     updateSettings(newSettings: Partial<Settings>): void;
@@ -14,14 +17,18 @@ type Handlers = {
 export const useSettings = create<Settings & Handlers>()(
     persist(
         (set) => ({
-            color: "#f87070",
-            font: "Kumbh Sans Vairable",
+            color: "rgb(248, 112, 112)",
+            font: "Kumbh Sans Variable",
+            pomodoro: 25,
+            "short break": 5,
+            "long break": 15,
             currentTimer: "pomodoro",
             updateSettings(newSettings: Partial<Settings>) {
                 set(newSettings);
             },
         }),
         {
+            version: 3,
             name: "settings",
         },
     ),
