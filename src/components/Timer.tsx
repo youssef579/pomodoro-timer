@@ -2,7 +2,7 @@
 import { memo } from "react";
 import useTimer from "hooks/useTimer";
 // Components
-import CircularProgress from "./CircularProgress";
+import CircularProgress from "components/CircularProgress";
 
 export default memo(function Timer() {
     const { color, seconds, percent, isRunning, startTimer, pauseTimer } =
@@ -10,7 +10,7 @@ export default memo(function Timer() {
 
     return (
         <div className="my-14 grid aspect-square w-[clamp(300px,70vw,450px)] place-items-center rounded-full bg-dark-blue-2 bg-timer shadow-timer">
-            <div className="relative isolate grid aspect-square w-[calc(100%-70px)] place-content-center place-items-center rounded-full bg-dark-blue-2 max-sm:w-[calc(100%-35px)]">
+            <div className="relative isolate grid aspect-square w-[calc(100%-60px)] place-content-center place-items-center rounded-full bg-dark-blue-2 max-sm:w-[calc(100%-35px)]">
                 <CircularProgress color={color} percent={percent} />
                 <p className="text-[clamp(3rem,14vw,6rem)] font-bold text-white">
                     {Math.floor(seconds / 60)
