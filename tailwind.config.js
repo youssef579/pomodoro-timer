@@ -23,7 +23,13 @@ export default {
             },
             screens: {
                 sm: "550px",
-            }
+            },
+            boxShadow: {
+                timer: "-5rem -5rem 10rem 0 #272c5a, 5rem 5rem 10rem 0 #121530",
+            },
+            backgroundImage: {
+                timer: "linear-gradient(to bottom right,#0e112a,#2e325a)",
+            },
         },
     },
     plugins: [],

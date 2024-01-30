@@ -8,6 +8,7 @@ type Settings = {
     color: Color;
     font: Font;
     currentTimer: Timer;
+    isRunning: boolean;
 } & Record<Timer, number>;
 
 type Handlers = {
@@ -22,14 +23,23 @@ export const useSettings = create<Settings & Handlers>()(
             pomodoro: 25,
             "short break": 5,
             "long break": 15,
+            isRunning: false,
             currentTimer: "pomodoro",
             updateSettings(newSettings: Partial<Settings>) {
                 set(newSettings);
             },
         }),
         {
-            version: 3,
+            version: 4,
             name: "settings",
+            partialize(state) {
+                return Object.fromEntries(
+                    Object.entries(state).filter(
+                        ([key]) =>
+                            key !== "currentTimer" && key !== "isRunning",
+                    ),
+                );
+            },
         },
     ),
 );

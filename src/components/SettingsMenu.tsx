@@ -1,14 +1,15 @@
-// React state
 import { useRef, memo } from "react";
 // Utils
 import { timers, fonts, colors } from "utils/settings";
+import { toast } from "react-toastify";
 // Icons
 import { Settings } from "lucide-react";
 import { X } from "lucide-react";
-// Components Inputs
+// Components
 import MinutesInput from "components/Inputs/MinutesInput";
 import FontInput from "components/Inputs/FontInput";
-import ColorInput from "./Inputs/ColorInput";
+import ColorInput from "components/Inputs/ColorInput";
+import Toaster from "components/Toaster";
 
 export default memo(function SettingsMenu() {
     const dialogRef = useRef<HTMLDialogElement>(null);
@@ -17,12 +18,13 @@ export default memo(function SettingsMenu() {
         <>
             <button
                 onClick={() => dialogRef.current!.showModal()}
-                className="m-auto block transition-transform hover:rotate-180"
+                className="mb-8 transition-transform hover:rotate-180"
             >
                 <Settings size={30} strokeWidth={1.5} />
             </button>
             <dialog
                 ref={dialogRef}
+                onClose={() => toast.dismiss({ containerId: "settings" })}
                 onClick={(e) => {
                     if (e.currentTarget === e.target)
                         dialogRef.current!.close();
@@ -75,6 +77,7 @@ export default memo(function SettingsMenu() {
                         </div>
                     </div>
                 </div>
+                <Toaster id="settings" />
             </dialog>
         </>
     );
